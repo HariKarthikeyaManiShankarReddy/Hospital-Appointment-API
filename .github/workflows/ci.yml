@@ -69,4 +69,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hospital-appointment-api:latest
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/hospital-appointment-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/hospital-appointment-api:${{ github.sha }}
