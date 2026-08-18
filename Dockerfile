@@ -9,8 +9,9 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends build-essential curl && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Poetry in the builder to export a requirements file
-RUN pip install --no-cache-dir "poetry>=1.2"
+# Install Poetry in the builder and the export plugin so 'poetry export' is available
+RUN pip install --no-cache-dir "poetry>=1.2" && \
+    pip install --no-cache-dir poetry-plugin-export
 
 # Copy dependency manifests first to leverage layer caching
 COPY pyproject.toml poetry.lock* /app/
